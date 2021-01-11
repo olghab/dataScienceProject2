@@ -109,7 +109,7 @@ def build_model():
         ('clf', MultiOutputClassifier(RandomForestClassifier()))
     ])
     
-    print(pipeline.get_params())
+#     print(pipeline.get_params())
      
     parameters = {
         'features__text_pipeline__vect__ngram_range': ((1, 1), (1, 2)),
@@ -139,9 +139,10 @@ def display_results(X_test, y_test, y_pred, model, category_names):
     print("Labels:", labels)
 
 def save_params_to_file(best_params):
-    print('Saving best parameters into file data/best_params.pkl...')
+    print('Saving best parameters...\n    PARAMETERS: data/best_params.pkl')
     with open('data/best_params.pkl', 'wb') as f:
-        pickle.dump(best_params, f, pickle.HIGHEST_PROTOCOL)
+        pickle.dump(best_params, f)
+    print('Parameters saved!')
     
 def evaluate_model(model, X_test, Y_test, category_names):
     y_pred = pd.DataFrame(model.predict(X_test), columns=category_names)
@@ -151,8 +152,8 @@ def evaluate_model(model, X_test, Y_test, category_names):
     save_params_to_file(model.best_params_)
 
 def save_model(model, model_filepath):
-    filename = 'finalized_model.sav'
-    pickle.dump(model, open(filename, 'wb'))
+    with open(model_filepath, 'wb') as f:
+        pickle.dump(model, f)
 
 def main():
     if len(sys.argv) == 3:
