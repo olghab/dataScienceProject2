@@ -6,6 +6,14 @@ import pandas as pd
 import pickle
 
 def load_data(data_filepath):
+    """ 
+    Decription:
+    This function loads data from .pkl file
+    Arguments:
+        data_filepath: path to .pkl file
+    Returns:
+        loaded data
+    """
     with open(data_filepath, 'rb') as f:
         return pickle.load(f)
 
@@ -17,7 +25,7 @@ def main():
         data = load_data(data_filepath)
         print('Best parameters: \n', data)
     else:
-        print('Please provide the filepath of the of the pickle file'\
+        print('Please provide the filepath of the pickle file'\
               '\nExample: python '\
               'load_params.py ../data/best_params.pkl')
 
