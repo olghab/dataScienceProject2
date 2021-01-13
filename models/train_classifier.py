@@ -142,9 +142,9 @@ def build_model():
                 ('tfidf', TfidfTransformer())
             ])),
             
-            ('starting_verb', StartingVerbExtractor()),
+            ('starting_verb', StartingVerbExtractor())
 
-            ('verb_help', VerbHelpExtractor())
+            #('verb_help', VerbHelpExtractor())
         ])),
 
         ('clf', MultiOutputClassifier(RandomForestClassifier()))
@@ -159,11 +159,10 @@ def build_model():
         'features__text_pipeline__tfidf__use_idf': (1, 0),
         'clf': [MultiOutputClassifier(RandomForestClassifier())],
         'clf__estimator__random_state':[42],
-        'clf__estimator__n_estimators':[10, 36, 40],
+        'clf__estimator__n_estimators':[10, 36],
         'features__transformer_weights': (
             {'text_pipeline': 1, 'starting_verb': 0.5},
             {'text_pipeline': 0.5, 'starting_verb': 1},
-            {'text_pipeline': 0.8, 'starting_verb': 1},
         )
     }
     

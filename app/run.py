@@ -2,13 +2,16 @@ import json
 import plotly
 import pandas as pd
 
+import nltk
+nltk.download(['punkt', 'wordnet', 'averaged_perceptron_tagger'])
+
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 
 from flask import Flask
 from flask import render_template, request, jsonify
 from plotly.graph_objs import Bar
-from sklearn.externals import joblib
+import joblib
 from sqlalchemy import create_engine
 from sklearn.base import BaseEstimator, TransformerMixin
 
@@ -16,6 +19,10 @@ from sklearn.base import BaseEstimator, TransformerMixin
 app = Flask(__name__)
 
 class StartingVerbExtractor(BaseEstimator, TransformerMixin):
+    """ 
+    Description: class used to find meaningful words in 
+    disaster responses messages
+    """
     def starting_verb(self, text):
         sentence_list = nltk.sent_tokenize(text)
         for sentence in sentence_list:
@@ -33,28 +40,17 @@ class StartingVerbExtractor(BaseEstimator, TransformerMixin):
     def transform(self, X):
         X_tagged = pd.Series(X).apply(self.starting_verb)
         return pd.DataFrame(X_tagged)
-    
-class VerbHelpExtractor(BaseEstimator, TransformerMixin):
-    def verb_help(self, text):
-        sentence_list = nltk.sent_tokenize(text)
-        for sentence in sentence_list:
-            tokenized_text = nltk.word_tokenize(sentence)
-            
-            for text in tokenized_text:
-                if text == 'help' or  text == 'HELP':
-                    return 1    
-        
-        return 0
-    
-    
-    def fit(self, x, y=None):
-        return self
-
-    def transform(self, X):
-        X_tagged = pd.Series(X).apply(self.verb_help)
-        return pd.DataFrame(X_tagged)
 
 def tokenize(text):
+    """ 
+    Decription:
+    This function tokenizes input text in order to get clean tokens,
+    prepared to be an input for machine learning algorithm
+    Arguments:
+        text: messages from the given dataset, in string format
+    Returns:
+        clean_tokens: tokenized text 
+    """
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
 
@@ -79,12 +75,10 @@ model = joblib.load("../models/classifier.pkl")
 def index():
     
     # extract data needed for visuals
-    # TODO: Below is an example - modify to extract data for your own visuals
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
     
     # create visuals
-    # TODO: Below is an example - modify to create your own visuals
     graphs = [
         {
             'data': [
