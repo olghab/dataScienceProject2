@@ -13,7 +13,7 @@ The project is the part of Udacity Program - Data Science Nanodegree
 1. In order to set up the database and model, please run following lines in root directory:
 
 - To run ETL pipeline that cleans data and stores in database
-`process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db`
+`python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db`
 
 - To run ML pipeline that trains classifier and saves
 `python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl`
@@ -55,3 +55,11 @@ Inputs - dataset provided by Figure Eight:
 
 ### Results:
 Results are visualized in web application, please follow @Instructions above
+
+Overview of training dataset:
+![Oveview_of_training_data.png](https://github.com/olghab/dataScienceProject2/blob/main/app/screenshots/Oveview_of_training_data.png)
+
+Example of classification results after typing: "Please, we need tents and water. We are in Silo, Thank you!" message:
+![Classification_results.png](https://github.com/olghab/dataScienceProject2/blob/main/app/screenshots/Classification_results.png)
+
+
