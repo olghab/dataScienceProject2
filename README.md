@@ -10,6 +10,7 @@ The aim of this project is to analyze disaster responses data from Figure Eight 
 Fast and accurate classification of the real life text messages can enable disaster response organizations to: 
 - firstly: filter the most important calls
 - secondly: pass on messages to the responsible organizations (for example water organization will only get messages about water issues)
+
 Both aspects can lead to better and quicker reaction and real help for people in need.
 
 The project is the part of Udacity Program - Data Science Nanodegree
