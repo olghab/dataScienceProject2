@@ -4,8 +4,13 @@
 ### Introduction:
 The aim of this project is to analyze disaster responses data from Figure Eight company (https://appen.com/), by:
 1) preparing dataset containing real messages recorded during disaster events
-2) creating machine learning model for messeges classification into 36 categories, in order to send them to an appropriate disaster relief agency
+2) creating a supervised machine learning model for messeges classification into 36 categories, in order to send them to an appropriate disaster relief agency
 3) visualising results in web app
+
+Fast and accurate classification of the real life text messages can enable disaster response organizations to: 
+- firstly: filter the most important calls
+- secondly: pass on messages to the responsible organizations (for example water organization will only get messages about water issues)
+Both aspects can lead to better and quicker reaction and real help for people in need.
 
 The project is the part of Udacity Program - Data Science Nanodegree
 
@@ -54,12 +59,16 @@ Inputs - dataset provided by Figure Eight:
 - disaster_categories.csv
 
 ### Results:
-Results are visualized in web application, please follow @Instructions above
+Results are visualized in web application, please follow @Instructions above to start the web app.
+
 
 Overview of training dataset:
 ![Oveview_of_training_data.png](https://github.com/olghab/dataScienceProject2/blob/main/app/screenshots/Oveview_of_training_data.png)
 
-Example of classification results after typing: "Please, we need tents and water. We are in Silo, Thank you!" message:
+
+Example of the visualization of the classification results after typing one of the real messages: 
+"Please, we need tents and water. We are in Silo, Thank you!" 
+
 ![Classification_results.png](https://github.com/olghab/dataScienceProject2/blob/main/app/screenshots/Classification_results.png)
 
 
