@@ -74,9 +74,8 @@ class VerbHelpExtractor(BaseEstimator, TransformerMixin):
 def load_data(database_filepath):
     """ 
     Decription:
-    This function loads data from SQLite database into dataframe, 
-    cleans dataset from wrong values and prepares machine learning 
-    inputs X and y
+    This function loads data from SQLite database into dataframe
+    and prepares machine learning inputs: X and y
     Arguments:
         database_filepath: path to disaster response database,
         prepared in process_data.py using ETL pipeline
@@ -88,16 +87,14 @@ def load_data(database_filepath):
     # load data
     engine = create_engine('sqlite:///{}'.format(database_filepath))
     df = pd.read_sql_table('CleanDataset', engine)   
-    # remove wrong values (there are some '2' instead of '1'
-    df = df.replace(2,1)    
-    
+
     # get features variables
     X = df['message']
     # get categories
     category_names = df.columns[5:]
     # get target variables
     y = df[category_names]
-        
+    
     return X, y, category_names
 
 def tokenize(text):

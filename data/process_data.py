@@ -64,14 +64,15 @@ def clean_data(df):
     # drop duplicates
     df.drop_duplicates(keep=False, inplace=True)
     
-    return df
+    # replace wrong values (there are some '2' instead of '1')
+    df = df.replace(2,1)
 
+    return df
 
 def save_data(df, database_filename):
     """ # Save the clean dataset into an sqlite database """ 
     engine = create_engine('sqlite:///{}'.format(database_filename))
-    df.to_sql('CleanDataset', engine)  
-
+    df.to_sql('CleanDataset', engine, if_exists='replace')
 
 def main():
     if len(sys.argv) == 4:
